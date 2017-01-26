@@ -19,6 +19,15 @@ Game.prototype = {
     this.currentplayer = this.players[0];
     }
     $("#current-player").text(this.currentplayer.name);
+  },
+  fillCell : function(cell) {
+    if(this.board[cell]=== "X" || this.board[cell]=== "O"){
+      alert("That space is already filled");
+    } else {
+      this.board[cell] = this.currentplayer.symbol;
+      $(cell).children("p").text(this.currentplayer.symbol);
+      this.switchPlayer();
+    }
   }
 }
 
@@ -42,8 +51,9 @@ $(document).ready(function() {
     $("#current-player").text(game.currentplayer.name);
 
     $(".cell").click(function() {
-      $(this).children("p").text(game.currentplayer.symbol);
-      game.switchPlayer();
+      game.fillCell("#" + $(this).attr("id"));
+
+
     })
   })
 })

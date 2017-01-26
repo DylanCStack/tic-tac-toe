@@ -18,7 +18,10 @@ A board game between two players competing to fill three sequential spaces in a 
 3. Program switches players & symbol (X or O) after each click.
   ** *Input: Player 1 clicks* **
   ** *Output: Player 2's turn* **
-4. Program checks if three sequentially adjacent spaces are occupied by the same symbol.
+4. Program will not allow a player to overwrite the other's move.
+  ** *Input: 1-1:X.click(O)* **
+  ** *Output: alert("space occupied, try again")* **
+5. Program checks if three sequentially adjacent spaces are occupied by the same symbol.
   ** *Input: [1,1][1,2][1,3] all filled with X symbol* **
   ** *Output: Victory for X!* **
 
