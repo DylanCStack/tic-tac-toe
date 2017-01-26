@@ -30,9 +30,6 @@ Game.prototype = {
     }
   }
 }
-
-
-
 // user-interface logic
 $(document).ready(function() {
   $("form#names").submit(function(event) {
@@ -52,8 +49,6 @@ $(document).ready(function() {
 
     $(".cell").click(function() {
       game.fillCell("#" + $(this).attr("id"));
-
-
     })
   })
 })
