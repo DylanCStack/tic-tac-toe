@@ -46,6 +46,15 @@ Game.prototype = {
         $("h1#win-banner").show();
         return true;
     }
+  },
+  resetBoard : function() {
+    for(var i = 1; i <=3; i++){
+      for(var k = 1; k<=3; k++){
+        this.board["#" + i + "-" + k] = Math.random();
+        $("#" + i + "-" + k).children("p").text("");
+      }
+    }
+    $("#win-banner").hide();
   }
 }
 // user-interface logic
@@ -64,6 +73,13 @@ $(document).ready(function() {
     var game = new Game([player1, player2], 3);
 
     $("#current-player").text(game.currentplayer.name);
+
+    $(this).hide();
+    $("button[name=new-game]").show();
+
+    $("button[name=new-game]").click(function() {
+      game.resetBoard();
+    })
 
     $(".cell").click(function() {
       game.fillCell("#" + $(this).attr("id"));

@@ -28,6 +28,10 @@ h1#win-banner {
   display: none;
 }
 
+button[name=new-game] {
+  display: none;
+}
+
 .blink {
     animation-duration: 1s;
     animation-iteration-count: infinite;
