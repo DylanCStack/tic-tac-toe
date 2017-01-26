@@ -7,7 +7,7 @@ function Player(name, symbol){//add tally for victories
 function Game(players, firstTo){
   this.players = players;
   this.currentplayer = players[0];
-  this.board = {"#1-1" : "", "#1-2" : "", "#1-3" : "", "#2-1" : "", "#2-2" : "", "#2-3" : "", "#3-1":"", "#3-2" : "", "#3-3" : ""};
+  this.board = {"#1-1" : "1", "#1-2" : "2", "#1-3" : "3", "#2-1" : "4", "#2-2" : "5", "#2-3" : "6", "#3-1":"7", "#3-2" : "8", "#3-3" : "9"};
   this.firstTo = firstTo;
 }
 
@@ -27,6 +27,21 @@ Game.prototype = {
       this.board[cell] = this.currentplayer.symbol;
       $(cell).children("p").text(this.currentplayer.symbol);
       this.switchPlayer();
+    }
+  },
+  checkVictory : function() {
+    if ((this.board["#1-1"]===this.board["#1-2"] && this.board["#1-2"]===this.board["#1-3"]) || (this.board["#2-1"]===this.board["#2-2"] && this.board["#2-2"]===this.board["#2-3"]) || (this.board["#3-1"]===this.board["#3-2"] && this.board["#3-2"]===this.board["#3-3"])) {
+      this.switchPlayer();
+      $("h1#win-banner").show();
+      return this.currentplayer.name;
+    } else if ((this.board["#1-1"]===this.board["#2-1"] && this.board["#3-1"]===this.board["#2-1"]) || (this.board["#1-2"]===this.board["#2-2"] && this.board["#3-2"]===this.board["#2-2"]) || (this.board["#3-3"]===this.board["#2-3"] && this.board["#2-3"]===this.board["#1-3"])) {
+        this.switchPlayer();
+        $("h1#win-banner").show();
+        return this.currentplayer.name;
+    } else if ((this.board["#1-1"]===this.board["#2-2"] && this.board["#3-3"]===this.board["#2-2"]) || (this.board["#1-3"]===this.board["#2-2"] && this.board["#3-1"]===this.board["#2-2"])) {
+        this.switchPlayer();
+        $("h1#win-banner").show();
+        return this.currentplayer.name;
     }
   }
 }
@@ -49,6 +64,8 @@ $(document).ready(function() {
 
     $(".cell").click(function() {
       game.fillCell("#" + $(this).attr("id"));
+      var winnerName = game.checkVictory();
+      $("#winner").text(winnerName);
     })
   })
 })
