@@ -1,9 +1,26 @@
 //business logic
-function player(name, symbol){//add tally for victories
+function Player(name, symbol){//add tally for victories
   this.name = name;
   this.symbol = symbol;
 }
 
+function Game(players, firstTo){
+  this.players = players;
+  this.currentplayer = players[0];
+  this.board = {"#1-1" : "", "#1-2" : "", "#1-3" : "", "#2-1" : "", "#2-2" : "", "#2-3" : "", "#3-1":"", "#3-2" : "", "#3-3" : ""};
+  this.firstTo = firstTo;
+}
+
+Game.prototype = {
+  switchPlayer : function() {
+    if (this.currentplayer === this.players[0]) { // if current player is equal to the 0th place player, switch to the 1st place player.
+    this.currentplayer = this.players[1];
+    } else if (this.currentplayer === this.players[1]) { // vice versa
+    this.currentplayer = this.players[0];
+    }
+    $("#current-player").text(this.currentplayer.name);
+  }
+}
 
 
 
@@ -17,10 +34,16 @@ $(document).ready(function() {
     $("#player1").text(inputtedName1);
     $("#player2").text(inputtedName2);
 
-    $("#current-player").text(inputtedName1);
+    var player1 = new Player(inputtedName1, "X");
+    var player2 = new Player(inputtedName2, "O");
 
-  $(".cell").click(function() {
-    $(this).children("p").text("X");
-  })
+    var game = new Game([player1, player2], 3);
+
+    $("#current-player").text(game.currentplayer.name);
+
+    $(".cell").click(function() {
+      $(this).children("p").text(game.currentplayer.symbol);
+      game.switchPlayer();
+    })
   })
 })
