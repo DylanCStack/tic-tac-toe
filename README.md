@@ -24,6 +24,13 @@ A board game between two players competing to fill three sequential spaces in a 
 5. Program checks if three sequentially adjacent spaces are occupied by the same symbol.
   ** *Input: [1,1][1,2][1,3] all filled with X symbol* **
   ** *Output: Victory for X!* **
+6. Program will not allow further input after victory has been determined.
+  ** *Input: [1,1].click()* **
+  ** *Output: ""* **
+7. Add button to restart game with a fresh board.
+    ** *Input: [1,1]..[3,3] == x, restart()* **
+    ** *Output: [1,1]..[3,3] == ""* **
+8. Allow players to play multiple games to determine a winner
 
 ## Setup/Installation Requirements
 

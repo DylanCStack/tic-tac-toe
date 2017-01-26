@@ -21,27 +21,30 @@ Game.prototype = {
     $("#current-player").text(this.currentplayer.name);
   },
   fillCell : function(cell) {
-    if(this.board[cell]=== "X" || this.board[cell]=== "O"){
-      alert("That space is already filled");
+    if(this.checkVictory() === true){
+      //do nothing
+    } else if(this.board[cell]=== "X" || this.board[cell]=== "O"){
+        alert("That space is already filled");
     } else {
       this.board[cell] = this.currentplayer.symbol;
       $(cell).children("p").text(this.currentplayer.symbol);
       this.switchPlayer();
+      this.checkVictory();
     }
   },
   checkVictory : function() {
     if ((this.board["#1-1"]===this.board["#1-2"] && this.board["#1-2"]===this.board["#1-3"]) || (this.board["#2-1"]===this.board["#2-2"] && this.board["#2-2"]===this.board["#2-3"]) || (this.board["#3-1"]===this.board["#3-2"] && this.board["#3-2"]===this.board["#3-3"])) {
       this.switchPlayer();
       $("h1#win-banner").show();
-      return this.currentplayer.name;
+      return true;
     } else if ((this.board["#1-1"]===this.board["#2-1"] && this.board["#3-1"]===this.board["#2-1"]) || (this.board["#1-2"]===this.board["#2-2"] && this.board["#3-2"]===this.board["#2-2"]) || (this.board["#3-3"]===this.board["#2-3"] && this.board["#2-3"]===this.board["#1-3"])) {
         this.switchPlayer();
         $("h1#win-banner").show();
-        return this.currentplayer.name;
+        return true;
     } else if ((this.board["#1-1"]===this.board["#2-2"] && this.board["#3-3"]===this.board["#2-2"]) || (this.board["#1-3"]===this.board["#2-2"] && this.board["#3-1"]===this.board["#2-2"])) {
         this.switchPlayer();
         $("h1#win-banner").show();
-        return this.currentplayer.name;
+        return true;
     }
   }
 }
@@ -64,7 +67,7 @@ $(document).ready(function() {
 
     $(".cell").click(function() {
       game.fillCell("#" + $(this).attr("id"));
-      var winnerName = game.checkVictory();
+      var winnerName = game.currentplayer.name;
       $("#winner").text(winnerName);
     })
   })
