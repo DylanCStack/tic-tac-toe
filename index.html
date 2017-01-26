@@ -12,6 +12,15 @@
   </head>
   <body>
     <div class="container">
+      <form id="names">
+        <label for="name1">First player's name:</label>
+        <input type="text" name="name1" id="player1name" value="Jennifer">
+
+        <label for="name2">Second player's name:</label>
+        <input type="text" name="name2" id="player2name" value="Dylan">
+
+        <button class="btn btn-success" type="submit">Start Game</button>
+      </form>
       <div class="row">
         <div class="col-xs-4 cell">
           <p>
@@ -54,6 +63,9 @@
           </p>
         </div>
       </div>
+      <h5>Player #1: <span id="player1"</span></h5>
+      <h5>Player #2: <span id="player2"</span></h5>
+      <h4>Currently <strong><span id="current-player"></span>'s</strong> turn</h5>
     </div>
   </body>
 </html>
