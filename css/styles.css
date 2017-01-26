@@ -4,6 +4,10 @@
   height:100px;
   width:100px;
   border:1px solid black;
+  font-size: 5em;
+  font-weight: bold;
+  text-align: center;
+  /*font-family: serif;*/
 }
 
 .row:nth-child(1)>* {
