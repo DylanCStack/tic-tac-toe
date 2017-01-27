@@ -46,6 +46,7 @@ Game.prototype = {
         $("h1#win-banner").show();
         return true;
     }
+    
   },
   resetBoard : function() {
     for(var i = 1; i <=3; i++){
