@@ -8,7 +8,7 @@
 
 A board game between two players competing to fill three sequential spaces in a 3 x 3 grid.
 
-##Specifications:
+## Specifications:
 1. Program will display a clickable 3 x 3 grid.
   ** *Input: Load page* **
   ** *Output: 3 x 3 grid* **
